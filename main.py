@@ -5,7 +5,7 @@ from aiogram import Bot, Dispatcher
 
 from config import TOKEN
 from app.Handlers import router
-from Forms.VienwForm.Callback import router_callback
+from Forms.VienwForm.CallbackForm.Callback import router_callback
 from Forms.VienwForm.ViewForm import *
 
 bot = Bot(token=TOKEN)
