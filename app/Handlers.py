@@ -1,4 +1,4 @@
-from aiogram import F, Router
+from aiogram import Router
 from aiogram.filters import CommandStart, Command
 from aiogram.types import Message, CallbackQuery, KeyboardButton, ReplyKeyboardMarkup, ReplyKeyboardRemove
 
@@ -30,11 +30,4 @@ async def cmd_start(message: Message, state: FSMContext):
     languagekb = ReplyKeyboardMarkup(keyboard=languages, resize_keyboard=True,
                                            input_field_placeholder="Choose your language")
     await message.answer("Hello, setup my language!", reply_markup=languagekb)
-
-  
- 
-
-
-
-    
 
