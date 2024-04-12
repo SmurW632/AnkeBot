@@ -1,50 +1,30 @@
 from aiogram.types import (InlineKeyboardMarkup, InlineKeyboardButton)
 
-chek_name = InlineKeyboardMarkup(inline_keyboard = [
+chek_base_inf = InlineKeyboardMarkup(inline_keyboard = [
     [
-        InlineKeyboardButton(text = 'Все правильно', callback_data = 'OK_NAME'), 
-        InlineKeyboardButton(text = "Заполнить заново", callback_data = "NOT_OK_NAME")
+        InlineKeyboardButton(text = 'ДА', callback_data = 'OK_BASE_INF'), 
+        InlineKeyboardButton(text = "НЕТ", callback_data = "NOT_OK_BASE_INF")
     ]
 ])
 
-chek_photo = InlineKeyboardMarkup(inline_keyboard = [
+chek_ai_ipitaphia = InlineKeyboardMarkup(inline_keyboard = [
     [
-        InlineKeyboardButton(text = 'ДА', callback_data = 'OK_PHOTO'), 
-        InlineKeyboardButton(text = "НЕТ", callback_data = "NOT_OK_PHOTO")
+        InlineKeyboardButton(text = 'ДА', callback_data = 'OK_AI_IPITAPHIA'), 
+        InlineKeyboardButton(text = "НЕТ", callback_data = "NOT_OK_AI_IPITAPHIA")
     ]
 ])
 
-chek_date = InlineKeyboardMarkup(inline_keyboard = [
+chek_short_inf = InlineKeyboardMarkup(inline_keyboard = [
     [
-        InlineKeyboardButton(text = 'Все правильно', callback_data = 'OK_DATE'), 
-        InlineKeyboardButton(text = "Заполнить заново", callback_data = "NOT_OK_DATE")
+        InlineKeyboardButton(text = 'Все правильно', callback_data = 'OK_SHORT_INF'), 
+        InlineKeyboardButton(text = "Заполнить заново", callback_data = "NOT_OK_SHORT_INF")
     ]
 ])
 
-chek_place = InlineKeyboardMarkup(inline_keyboard = [
-    [
-        InlineKeyboardButton(text = 'Все правильно', callback_data = 'OK_PLACE'), 
-        InlineKeyboardButton(text = "Заполнить заново", callback_data = "NOT_OK_PLACE")
-    ]
-])
-
-chek_epigroph = InlineKeyboardMarkup(inline_keyboard = [
-    [
-        InlineKeyboardButton(text = 'Все правильно', callback_data = 'OK_EPIGROPH'), 
-        InlineKeyboardButton(text = "Заполнить заново", callback_data = "NOT_OK_EPIGROPH")
-    ]
-])
-
-chek_biography = InlineKeyboardMarkup(inline_keyboard = [
-    [
-        InlineKeyboardButton(text = 'Все правильно', callback_data = 'OK_BIOGRAPHY'), 
-        InlineKeyboardButton(text = "Заполнить заново", callback_data = "NOT_OK_BIOGRAPHY")
-    ]
-])
 
 chek_finish = InlineKeyboardMarkup(inline_keyboard = [
     [
-        InlineKeyboardButton(text = 'Нет, хочу закончить заполнение', callback_data = 'OK_FINISH'), 
-        InlineKeyboardButton(text = "Заполнить заново", callback_data = "NOT_OK_FINISH")
+        InlineKeyboardButton(text = 'ДА', callback_data = 'OK_FINISH'), 
+        InlineKeyboardButton(text = "НЕТ", callback_data = "NOT_OK_FINISH")
     ]
 ])
