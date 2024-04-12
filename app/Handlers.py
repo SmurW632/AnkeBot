@@ -13,7 +13,6 @@ import app.TranslateFun.Chosenactivity
 import app.TranslateFun.Languagekeyboard
 from app.Classactivity import *
 
-
 router = Router()
 global lang 
 
