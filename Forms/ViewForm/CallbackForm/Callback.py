@@ -5,6 +5,7 @@ from aiogram.fsm.context import FSMContext
 
 from Forms.ViewForm.ViewFormNoGPT import StepsForms, user_data
 from Forms.ViewForm.Keyboards.InlineKEyboards import *
+from Forms.Save_user_data_in_json import save_user_data
 
 router_callback = Router()
 
@@ -68,6 +69,7 @@ async def CallBackNotOkAiEpitaphia(callback: CallbackQuery, state: FSMContext):
 '''
 @router_callback.callback_query(F.data == 'OK_FINISH')
 async def CallBackOkPlace(callback: CallbackQuery, state: FSMContext):
+    await save_user_data(user_data)
     await callback.answer("Спасибо что воспользовались мной от AnkeBot") #Здесь должна быть функция которая отправляет пользователю ссылку на страницу памяти
     await callback.message.answer("Вот ваша ссылка на страницу памяти")
 
