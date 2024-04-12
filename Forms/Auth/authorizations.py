@@ -22,4 +22,3 @@ async def update_memory_page(message: Message):
                 await message.answer("Страница памяти успешно обновлена!")
             else:
                 await message.answer(f"Произошла ошибка при обновлении страницы памяти. Статус: {response.status}")
-
