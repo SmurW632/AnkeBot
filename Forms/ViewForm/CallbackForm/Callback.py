@@ -3,117 +3,76 @@ from aiogram import Router, F, types
 from aiogram.types import Message, CallbackQuery
 from aiogram.fsm.context import FSMContext
 
-from Forms.ViewForm.ViewFormNoGPT import StepsForms
+from Forms.ViewForm.ViewFormNoGPT import StepsForms, user_data
 from Forms.ViewForm.Keyboards.InlineKEyboards import *
 
 router_callback = Router()
 
 '''
-обработка коллбэков для пункта ФИО
+обработка ФИО пункта сообщений
 '''
-@router_callback.callback_query(F.data == 'OK_NAME')
-async def CallBackOkName(callback: CallbackQuery, state: FSMContext):
-    await state.update_data(FIO = callback.message.text)
+@router_callback.callback_query(F.data == 'OK_BASE_INF')
+async def CallBackOkBaseInf(callback: CallbackQuery, state: FSMContext):
+    user_data["name"] = callback.message.text
+    #await state.update_data(FIO = callback.message.text)
     await callback.answer('Продолжаем заполнение')
-    await callback.message.answer("Пришлите фото для страницы памяти")
-    await state.set_state(StepsForms.GET_PHOTO)
+    await callback.message.answer('Укажите дату рождения, дату смерти. Запишите через запятую')
+    await state.set_state(StepsForms.GET_SHORT_INF)
 
-@router_callback.callback_query(F.data == "NOT_OK_NAME")
-async def CallBackNotOkName(callback: CallbackQuery, state: FSMContext):
-    await state.set_state(StepsForms.GET_NAME_FOR_ANKET)
+@router_callback.callback_query(F.data == "NOT_OK_BASE_INF")
+async def CallBackNotOkBaseInf(callback: CallbackQuery, state: FSMContext):
+    await state.set_state(StepsForms.GET_BASE_INF)
     await callback.answer("Заполняем это поле заново")
     await callback.message.edit_text("Укажите ФИО")
 
 '''
-обработка коллбэков для пункта ФОТО
+обработка ДАТЫ ПУНКТА СООБЩЕНИЙ
 '''
-@router_callback.callback_query(F.data == 'OK_PHOTO')
-async def CallBackOkName(callback: CallbackQuery, state: FSMContext):
-    await state.update_data(PHOTO = callback.message.photo)
-    await callback.answer('Продолжаем заполнение')
-    await callback.message.answer("Укажите дату по форме: дд.мм.гг - дд.мм.гг (Между датами тире через пробел)")
-    await state.set_state(StepsForms.GET_DATE)
+@router_callback.callback_query(F.data == 'OK_SHORT_INF')
+async def CallBackOkShortInf(callback: CallbackQuery, state: FSMContext):
+    answer_user = callback.message.text.split(',')
+    user_data["start"] = answer_user[0]
+    user_data["end"] = answer_user[1]
+    #await state.update_data(PHOTO = callback.message.photo)
+    await callback.answer()
+    await callback.message.answer("Напишите краткую эпитафию и отдельным предложением укажите автора")
+    await state.set_state(StepsForms.GET_AI_EPITAPHIA)
 
-@router_callback.callback_query(F.data == "NOT_OK_PHOTO")
-async def CallBackNotOkName(callback: CallbackQuery, state: FSMContext):
-    await state.set_state(StepsForms.GET_PHOTO)
-    await callback.answer("Заполняем это поле заново")
-    await callback.message.edit_text("Пришлите фото для страницы памяти")
-
-'''
-обработка коллбэков для пункта ДАТА
-'''
-@router_callback.callback_query(F.data == 'OK_DATE')
-async def CallBackOkDate(callback: CallbackQuery, state: FSMContext):
-    await state.update_data(DATE = callback.message.text)
-    await callback.answer('Продолжаем заполнение')
-    await callback.message.answer('Укажите место рождения и место смерти по форме: "Место рождения" "Место смерти"(Через пробел и без ковычек)')
-    await state.set_state(StepsForms.GET_PLACE)
-
-@router_callback.callback_query(F.data == "NOT_OK_DATE")
-async def CallBackNotOkDate(callback: CallbackQuery, state: FSMContext):
-    await state.set_state(StepsForms.GET_DATE)
-    await callback.answer("Заполняем это поле заново")
-    await callback.message.edit_text("Укажите даты по форме: дд.мм.гг - дд.мм.гг (Между датами тире через пробел)")
+@router_callback.callback_query(F.data == "NOT_OK_SHORT_INF")
+async def CallBackNotOkShortInf(callback: CallbackQuery, state: FSMContext):
+    await state.set_state(StepsForms.GET_SHORT_INF)
+    await callback.answer()
+    await callback.message.edit_text("Укажите место рождения, место смерти, дети, супруга/супруг. Все пункты записать через запятую")
 
 '''
-обработка коллбэков для пункта МЕСТО
+обработка ЭПИТАФИЯ ПУНКТА СООБЩЕНИЙ
 '''
-@router_callback.callback_query(F.data == 'OK_PLACE')
-async def CallBackOkPlace(callback: CallbackQuery, state: FSMContext):
-    await state.update_data(PLACE = callback.message.text)
-    await callback.answer('Продолжаем заполнение')
-    await callback.message.answer('Напишите эпигроф для страницы памяти')
-    await state.set_state(StepsForms.GET_EPIGRAPH)
-
-@router_callback.callback_query(F.data == "NOT_OK_PLACE")
-async def CallBackNotOkPlace(callback: CallbackQuery, state: FSMContext):
-    await state.set_state(StepsForms.GET_PLACE)
-    await callback.answer("Заполняем это поле заново")
-    await callback.message.edit_text('Укажите место рождения и место смерти по форме: "Место рождения" "Место смерти"(Через пробел и без ковычек)')
-
-'''
-обработка коллбэков для пункта ЭПИГРОФ
-'''
-@router_callback.callback_query(F.data == 'OK_EPIGROPH')
-async def CallBackOkPlace(callback: CallbackQuery, state: FSMContext):
-    await state.update_data(EPIGROPH = callback.message.text)
-    await callback.answer('Продолжаем заполнение')
-    await callback.message.answer('Напишите биографию для страницы памяти')
-    await state.set_state(StepsForms.GET_BIOGRAPHY)
-
-@router_callback.callback_query(F.data == "NOT_OK_EPIGROPH")
-async def CallBackNotOkPlace(callback: CallbackQuery, state: FSMContext):
-    await state.set_state(StepsForms.GET_EPIGRAPH)
-    await callback.answer("Заполняем это поле заново")
-    await callback.message.edit_text("Напишите эпигроф для страницы памяти")
-
-'''
-обработка коллбэков для пункта БИОГРАФИЯ
-'''
-@router_callback.callback_query(F.data == 'OK_BIOGRAPHY')
-async def CallBackOkPlace(callback: CallbackQuery, state: FSMContext):
-    await state.update_data(BIOGRAPHY = callback.message.text)
-    await callback.answer('Продолжаем заполнение')
+@router_callback.callback_query(F.data == 'OK_AI_IPITAPHIA')
+async def CallBackOkAiEpitaphia(callback: CallbackQuery, state: FSMContext):
+    answer_user = callback.message.text.split('.')
+    user_data["epitaph"] = answer_user[:-1] # здесь будет записыватся ответ из gpt
+    user_data["author_epitaph"] = callback.message.text.split('.')[-1]
+    #await state.update_data(PHOTO = callback.message.photo)
+    await callback.answer('завершение заполнения')
+    await callback.message.answer(f"Вот данные которые вы ввели: ФИО: {user_data["name"]}\nДата рождения: {user_data['start']}\nДата смерти: {user_data["end"]}\nЭпитафия: {user_data["epitaph"]}\nАвтор эпитафии: {user_data["author_epitaph"]}\n Хотите завершенить работу", reply_markup = chek_finish)
     await state.set_state(StepsForms.FINISH)
 
-@router_callback.callback_query(F.data == "NOT_OK_BIOGRAPHY")
-async def CallBackNotOkPlace(callback: CallbackQuery, state: FSMContext):
-    await state.set_state(StepsForms.GET_BIOGRAPHY)
-    await callback.answer("Заполняем это поле заново")
-    await callback.message.edit_text("Напишите биографию для страницы памяти")
+@router_callback.callback_query(F.data == "NOT_OK_AI_IPITAPHIA")
+async def CallBackNotOkAiEpitaphia(callback: CallbackQuery, state: FSMContext):
+    await state.set_state(StepsForms.GET_AI_EPITAPHIA)
+    await callback.answer()
+    await callback.message.edit_text("Напишите какую эпитафию вы хотите или автора эпитафии")
 
 '''
 обработка событий для состояние ФИНИШ
 '''
 @router_callback.callback_query(F.data == 'OK_FINISH')
 async def CallBackOkPlace(callback: CallbackQuery, state: FSMContext):
-    await callback.answer("Спасибо что воспользовались мной от AnkeBot")
-    await callback.message.answer("Завершение заполнения анкеты")
-     
+    await callback.answer("Спасибо что воспользовались мной от AnkeBot") #Здесь должна быть функция которая отправляет пользователю ссылку на страницу памяти
+    await callback.message.answer("Вот ваша ссылка на страницу памяти")
 
 @router_callback.callback_query(F.data == "NOT_OK_FINISH")
 async def CallBackNotOkPlace(callback: CallbackQuery, state: FSMContext):
-    await state.set_state(StepsForms.GET_NAME_FOR_ANKET)
-    await callback.answer("Заполняем это поле заново")
+    await state.set_state(StepsForms.GET_BASE_INF)
+    await callback.answer("Заполняем данные заново")
     await callback.message.edit_text("Укажите ФИО")
