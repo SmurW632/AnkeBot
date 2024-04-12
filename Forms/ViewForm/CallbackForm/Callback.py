@@ -110,7 +110,7 @@ async def CallBackNotOkPlace(callback: CallbackQuery, state: FSMContext):
 async def CallBackOkPlace(callback: CallbackQuery, state: FSMContext):
     await callback.answer("Спасибо что воспользовались мной от AnkeBot")
     await callback.message.answer("Завершение заполнения анкеты")
-    
+     
 
 @router_callback.callback_query(F.data == "NOT_OK_FINISH")
 async def CallBackNotOkPlace(callback: CallbackQuery, state: FSMContext):
