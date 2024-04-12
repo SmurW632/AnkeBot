@@ -7,9 +7,9 @@ router_callback = Router()
 @router_callback.callback_query(F.data == 'OK')
 async def CallBackOK(callback: CallbackQuery):
     await callback.answer()
-    await callback.message.answer('Продолжаем заполнение')
+    await callback.message.edit_text('Продолжаем заполнение')
 
 @router_callback.callback_query(F.data == "NOT OK")
 async def CallBackNoOk(callback: CallbackQuery):
     await callback.answer()
-    await callback.message.answer("Заполняем это поле заново")
+    await callback.message.edit_text("Заполняем это поле заново")
