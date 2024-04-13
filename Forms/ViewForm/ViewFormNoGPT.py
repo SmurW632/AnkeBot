@@ -31,15 +31,6 @@ user_data = {
 '''
 @router_form.message(Command('form'))
 async def GetName(message: Message, bot: Bot, state: FSMContext):
-    global user_data 
-    user_data = {
-        "name": "",
-        "start": "",
-        "end": "",
-        "epitaph": "",
-        "author_epitaph": "", 
-        "page_type_id": "1"
-    }
     await bot.send_message(message.from_user.id, ("Укажите ФИО"))
     await message.delete()
     #await state.update_data(ID_user = message.from_user.id) #айдишник пока берем из тг, потом переделать и присваивать свои айдишники
