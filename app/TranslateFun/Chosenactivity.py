@@ -1,4 +1,3 @@
-
 from aiogram import F, Router
 from aiogram.filters import CommandStart, Command
 from aiogram.types import Message, CallbackQuery, KeyboardButton, ReplyKeyboardMarkup, ReplyKeyboardRemove
@@ -8,10 +7,10 @@ import app.Keyboard as kb
 import app.TranslateFun.TranslateFun as TF
 from app.Classactivity import *
 from app.Handlers import *
-router = Router()
 
+router_akivity = Router()
 
-@router.message(StepsForms.CHOSENACTIVITY)
+@router_akivity.message(StepsLaunch.CHOSENACTIVITY)
 async def choose_Activity(message: Message,state: FSMContext):
     data = await state.get_data()
     lang = await data.get('Lang', 'en')

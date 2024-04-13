@@ -1,13 +1,10 @@
 from aiogram import Router
 from aiogram.filters import CommandStart, Command
 from aiogram.types import Message, CallbackQuery, KeyboardButton, ReplyKeyboardMarkup, ReplyKeyboardRemove
-
-
-
 from aiogram.fsm.context import FSMContext
 
 import app.Classactivity
-import app.Keyboard as kb 
+from app.Keyboard import MainMenu
 import app.TranslateFun.TranslateFun as TF
 import app.TranslateFun.Chosenactivity
 import app.TranslateFun.Languagekeyboard
@@ -18,18 +15,4 @@ global lang
 
 @router.message(CommandStart())
 async def cmd_start(message: Message):
-    await message.answer(f'Привет {message.from_user.first_name}.\nЯ бот по заполнению страницы памяти\nВыбери одну из функций.', reply_markup = MainMenu())
-
-async def cmd_start(message: Message, state: FSMContext):
-
-    languages = [
-        [KeyboardButton(text="English 🇬🇧")],
-        [KeyboardButton(text="Russian 🇷🇺")],
-        [KeyboardButton(text="Japanese 🇯🇵")],
-        [KeyboardButton(text="Chinese 🇨🇳")],
-    ]
-
-    languagekb = ReplyKeyboardMarkup(keyboard=languages, resize_keyboard=True,
-                                           input_field_placeholder="Choose your language")
-    await message.answer("Hello, setup my language!", reply_markup=languagekb)
-
+   await message.answer(f'Привет {message.from_user.first_name}.\nЯ бот по заполнению страницы памяти\nВыбери одну из функций.', reply_markup = MainMenu())

@@ -1,7 +1,7 @@
 
 from aiogram.fsm.state import State, StatesGroup
 
-class StepsForms(StatesGroup):
+class StepsLaunch(StatesGroup):
     '''
     Класс в котором лежат указатели состояния
     '''
