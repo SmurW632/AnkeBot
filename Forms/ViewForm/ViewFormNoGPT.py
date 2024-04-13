@@ -6,6 +6,7 @@ from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
 
 from Forms.ViewForm.Keyboards.InlineKEyboards import *
+from app.Classactivity import *
 
 router_form = Router()
 
@@ -29,14 +30,7 @@ user_data = {
 '''
 Дальше идут обработчики которые направляются по событиям
 '''
-@router_form.message(Command('form'))
-async def GetName(message: Message, bot: Bot, state: FSMContext):
-    await bot.send_message(message.from_user.id, ("Укажите ФИО"))
-    await message.delete()
-    #await state.update_data(ID_user = message.from_user.id) #айдишник пока берем из тг, потом переделать и присваивать свои айдишники
-    await state.set_state(StepsForms.GET_BASE_INF)
-
-@router_form.message(StepsForms.GET_BASE_INF)
+@router_form.message(StepsLaunch.FORM)
 async def SetName(message: Message):
     await message.answer(f"Оставить это ФИО:\n{message.text}", reply_markup = chek_base_inf)
 
