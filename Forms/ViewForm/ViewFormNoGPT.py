@@ -51,9 +51,7 @@ async def SetName(message: Message):
 
 @router_form.message(StepsForms.GET_SHORT_INF)
 async def SetDate(message: Message):
-    global answer_user_date 
-    answer_user_date = message.text.split(',')
-    await message.answer(f"Оставить эти даты:\nДата рождения - {answer_user_date[0]}\nДата смерти - {answer_user_date[1]}", reply_markup = chek_short_inf)
+    await message.answer(f"Оставить эти даты:\nДата рождения - {message.text.split(",")[0]}\nДата смерти - {message.text.split(",")[1]}", reply_markup = chek_short_inf)
 
 @router_form.message(StepsForms.GET_AI_EPITAPHIA)
 async def SetAiEpithap(message: Message):

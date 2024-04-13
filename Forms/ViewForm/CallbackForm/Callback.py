@@ -17,7 +17,7 @@ async def CallBackOkBaseInf(callback: CallbackQuery, state: FSMContext):
     user_data["name"] = callback.message.text
     #await state.update_data(FIO = callback.message.text)
     await callback.answer()
-    await callback.message.answer('Укажите дату рождения, дату смерти. Запишите через запятую')
+    await callback.message.edit_text('Укажите дату рождения, дату смерти. Запишите через запятую')
     await state.set_state(StepsForms.GET_SHORT_INF)
 
 @router_callback.callback_query(F.data == "NOT_OK_BASE_INF")
@@ -31,11 +31,13 @@ async def CallBackNotOkBaseInf(callback: CallbackQuery, state: FSMContext):
 '''
 @router_callback.callback_query(F.data == 'OK_SHORT_INF')
 async def CallBackOkShortInf(callback: CallbackQuery, state: FSMContext):
-    user_data["start"] = callback.message.text.split(',')[0]
-    user_data["end"] = callback.message.text.split(',')[1]
+    answer_user = callback.message.text.split(',')
+    print(answer_user)
+    '''user_data["start"] = callback.message.text.split(',')[0]
+    user_data["end"] = callback.message.text.split(',')[1]'''
     #await state.update_data(PHOTO = callback.message.photo)
     await callback.answer()
-    await callback.message.answer("Напишите запрос для составления эпитафии")
+    await callback.message.edit_text("Напишите запрос для составления эпитафии")
     await state.set_state(StepsForms.GET_AI_EPITAPHIA)
 
 @router_callback.callback_query(F.data == "NOT_OK_SHORT_INF")
@@ -51,10 +53,9 @@ async def CallBackNotOkShortInf(callback: CallbackQuery, state: FSMContext):
 async def CallBackOkAiEpitaphia(callback: CallbackQuery, state: FSMContext):
     answer_GPT = await prompt(callback.message.text + 'Напиши эпитафию для страницы памяти о человеке на основе этого текста. Так же в отдельном предложении укажи автора эпитафии.')
     '''user_data["epitaph"] = answer_user[:-1] # здесь будет записыватся ответ из gpt
-    user_data["author_epitaph"] = callback.message.text.split('.')[-1]''' 
-    #await state.update_data(PHOTO = callback.message.photo)
+    user_data["author_epitaph"] = callback.message.text.split('.')[-1]'''
     await callback.answer('завершение заполнения')
-    await callback.message.answer(f'Вот эпитафия по вашему запросу:\n{answer_GPT}')
+    await callback.message.edit_text(f'Вот эпитафия по вашему запросу:\n{answer_GPT}')
     #await callback.message.answer(f"Вот данные которые вы ввели: ФИО: {user_data["name"]}\nДата рождения: {user_data['start']}\nДата смерти: {user_data["end"]}\nЭпитафия: {user_data["epitaph"]}\nАвтор эпитафии: {user_data["author_epitaph"]}\n Хотите завершенить работу", reply_markup = chek_finish)
     await state.set_state(StepsForms.FINISH)
     print(answer_GPT)
