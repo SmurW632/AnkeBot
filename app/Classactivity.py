@@ -7,3 +7,5 @@ class StepsLaunch(StatesGroup):
     '''
     CHOSENLANGUAGE = State()
     CHOSENACTIVITY = State()
+    MENU_ACTIVITY = State()
+    FORM = State()
