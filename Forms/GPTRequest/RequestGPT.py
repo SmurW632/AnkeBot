@@ -1,6 +1,7 @@
 import requests
 import json
 
+
 async def prompt(promt):
     prompt = {
         "modelUri": "gpt://b1g5og37bgh1ghh2s2qc/yandexgpt-lite/latest",
@@ -14,10 +15,9 @@ async def prompt(promt):
                 "role": "system",
                 "text": f"{promt}",
             },
-            
+
         ]
     }
-
 
     url = "https://llm.api.cloud.yandex.net/foundationModels/v1/completion"
     headers = {
@@ -25,8 +25,8 @@ async def prompt(promt):
         "Authorization": "Api-Key AQVN1J4sCxYR98rj-tVppyp6gXQthbdmYvmgtO7a"
     }
 
-    response =   requests.post(url, headers=headers, json=prompt)
-    
+    response = requests.post(url, headers=headers, json=prompt)
+
     jsoned = json.loads(response.text)
-    
-    return str(jsoned["result"]['alternatives'][0]["message"]["text"])#.replace(".","\.").replace("-","\-")
+
+    return str(jsoned["result"]['alternatives'][0]["message"]["text"])  #.replace(".","\.").replace("-","\-")
