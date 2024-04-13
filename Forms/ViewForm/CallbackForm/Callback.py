@@ -2,6 +2,9 @@
 from aiogram import Router, F, types
 from aiogram.types import Message, CallbackQuery
 from aiogram.fsm.context import FSMContext
+from aiogram_calendar import SimpleCalendar, SimpleCalendarCallback, DialogCalendar, DialogCalendarCallback, \
+    get_user_locale
+from aiogram.filters.callback_data import CallbackData
 
 from Forms.ViewForm.ViewFormNoGPT import StepsForms, user_data
 from Forms.ViewForm.Keyboards.InlineKEyboards import *
@@ -9,22 +12,41 @@ from Forms.Save_user_data_in_json import save_user_data
 
 router_callback = Router()
 
+
+
 '''
 обработка ФИО пункта сообщений
 '''
 @router_callback.callback_query(F.data == 'OK_BASE_INF')
 async def CallBackOkBaseInf(callback: CallbackQuery, state: FSMContext):
-    user_data["name"] = callback.message.text
-    #await state.update_data(FIO = callback.message.text)
+    user_data["name"] = callback.message.text.split(":")[-1].strip()
     await callback.answer('Продолжаем заполнение')
-    await callback.message.answer('Укажите дату рождения, дату смерти. Запишите через запятую')
+    await callback.message.answer('Укажите дату рождения', 
+                                    reply_markup=await DialogCalendar(
+                                    locale=await get_user_locale(callback.from_user)).start_calendar())
+    
     await state.set_state(StepsForms.GET_SHORT_INF)
+
+    
+@router_callback.callback_query(DialogCalendarCallback.filter())
+async def process_dialog_calendar(callback_query: CallbackQuery, callback_data: CallbackData):
+    selected, date = await DialogCalendar(
+        locale=await get_user_locale(callback_query.from_user)
+    ).process_selection(callback_query, callback_data)
+    if selected:
+        await callback_query.message.answer(
+            f'Выбранная дата {date.strftime("%d.%m.%Y")}'
+        )
+        
+    
 
 @router_callback.callback_query(F.data == "NOT_OK_BASE_INF")
 async def CallBackNotOkBaseInf(callback: CallbackQuery, state: FSMContext):
     await state.set_state(StepsForms.GET_BASE_INF)
     await callback.answer("Заполняем это поле заново")
     await callback.message.edit_text("Укажите ФИО")
+    
+
 
 '''
 обработка ДАТЫ ПУНКТА СООБЩЕНИЙ
@@ -34,7 +56,6 @@ async def CallBackOkShortInf(callback: CallbackQuery, state: FSMContext):
     answer_user = callback.message.text.split(',')
     user_data["start"] = answer_user[0]
     user_data["end"] = answer_user[1]
-    #await state.update_data(PHOTO = callback.message.photo)
     await callback.answer()
     await callback.message.answer("Напишите краткую эпитафию и отдельным предложением укажите автора")
     await state.set_state(StepsForms.GET_AI_EPITAPHIA)

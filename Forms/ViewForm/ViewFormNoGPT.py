@@ -41,9 +41,10 @@ async def GetName(message: Message, bot: Bot, state: FSMContext):
 async def SetName(message: Message):
     await message.answer(f"Провертье правильность заполнения данных:\n{message.text}", reply_markup = chek_base_inf)
 
-@router_form.message(StepsForms.GET_SHORT_INF)
+'''@router_form.message(StepsForms.GET_SHORT_INF)
 async def SetDate(message: Message):
     await message.answer(f"Провертье правильность заполнения данных:\n {message.text}", reply_markup = chek_short_inf)
+'''
 
 @router_form.message(StepsForms.GET_AI_EPITAPHIA)
 async def SetPhoto(message: Message):
