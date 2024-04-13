@@ -8,13 +8,11 @@ from app.Classactivity import *
 
 
 router_launch = Router()
-global lang 
+#global lang 
 
 languages = [
         [KeyboardButton(text="English 🇬🇧")],
-        [KeyboardButton(text="Russian 🇷🇺")],
-        [KeyboardButton(text="Japanese 🇯🇵")],
-        [KeyboardButton(text="Chinese 🇨🇳")],
+        [KeyboardButton(text="Russian 🇷🇺")]
     ]
 languagekb = ReplyKeyboardMarkup(keyboard=languages, resize_keyboard=True,
                                            input_field_placeholder="Choose your language")
@@ -35,9 +33,8 @@ async def choose_language(message: Message,state: FSMContext):
         await state.update_data(lang=lang)
         buttons = [
             [KeyboardButton(text=await TF.Translation("Начать заполнение",lang))],
-            [KeyboardButton(text=await TF.Translation("Помочь с заполнением",lang))],
             [KeyboardButton(text=await TF.Translation("Помощь",lang))],
-            [KeyboardButton(text=await TF.Translation("Обратная связь",lang))],
+            [KeyboardButton(text=await TF.Translation("Обратная связь",lang))]
         ]
         
         buttonskb = ReplyKeyboardMarkup(keyboard=buttons, resize_keyboard=True,
@@ -52,7 +49,6 @@ async def choose_language(message: Message,state: FSMContext):
         await state.update_data(lang=lang)
         buttons = [
             [KeyboardButton(text=await TF.Translation("Начать заполнение",lang))],
-            [KeyboardButton(text=await TF.Translation("Помочь с заполнением",lang))],
             [KeyboardButton(text=await TF.Translation("Помощь",lang))],
             [KeyboardButton(text=await TF.Translation("Обратная связь",lang))],
         ]
@@ -69,7 +65,7 @@ async def perhod_activity(message: Message, bot: Bot, state: FSMContext):
     lang = data.get('lang', 'en')
     if message.text in await TF.Translation("Начать заполнение",lang):
         await state.set_state(StepsLaunch.FORM)
-        await bot.send_message(message.from_user.id, ("Укажите ФИО"))
+        await bot.send_message(message.from_user.id, await TF.Translation("Укажите ФИО",lang))
 
     elif message.text in await TF.Translation("Помощь",lang):
         pass

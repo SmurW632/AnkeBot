@@ -7,9 +7,11 @@ from aiogram.fsm.state import State, StatesGroup
 
 from Forms.ViewForm.Keyboards.InlineKEyboards import *
 from app.Classactivity import *
+import app.TranslateFun.TranslateFun as TF
 
 router_form = Router()
-
+'''data = FSMContext.get_data()
+lang = data.get('lang',)'''
 class StepsForms(StatesGroup):
     '''
     Класс в котором лежат указатели состояния
