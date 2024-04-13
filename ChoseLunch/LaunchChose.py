@@ -30,9 +30,11 @@ async def choose_language(message: Message,state: FSMContext):
     if message.text == "English 🇬🇧":
         lang = "en"
         await message.answer(await TF.Translation("Вы успешно установили язык!",lang),reply_markup=ReplyKeyboardRemove())
-        await state.update_data(lang=lang)
+        await state.update_data(lang = lang)
         buttons = [
             [KeyboardButton(text=await TF.Translation("Начать заполнение",lang))],
+            [KeyboardButton(text=await TF.Translation("Заполнить голосом",lang))],
+            [KeyboardButton(text=await TF.Translation("Скан фото",lang))],
             [KeyboardButton(text=await TF.Translation("Помощь",lang))],
             [KeyboardButton(text=await TF.Translation("Обратная связь",lang))]
         ]
@@ -65,7 +67,8 @@ async def perhod_activity(message: Message, bot: Bot, state: FSMContext):
     lang = data.get('lang', 'en')
     if message.text in await TF.Translation("Начать заполнение",lang):
         await state.set_state(StepsLaunch.FORM)
-        await bot.send_message(message.from_user.id, await TF.Translation("Укажите ФИО",lang))
+        await bot.send_message(message.from_user.id, await TF.Translation("Укажите ФИО", lang), reply_markup=ReplyKeyboardRemove())
+
 
     elif message.text in await TF.Translation("Помощь",lang):
         pass

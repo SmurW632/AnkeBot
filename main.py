@@ -4,7 +4,6 @@ import logging
 from aiogram import Bot, Dispatcher
 
 from config import TOKEN
-#from app.Handlers import router
 from app.TranslateFun.Languagekeyboard import router_launch
 from app.TranslateFun.Chosenactivity import router_akivity
 from Forms.ViewForm.CallbackForm.Callback import router_callback

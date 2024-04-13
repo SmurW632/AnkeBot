@@ -59,7 +59,6 @@ async def CallBackOkAiEpitaphia(callback: CallbackQuery, state: FSMContext):
     await callback.message.edit_text(f'Вот эпитафия по вашему запросу:\n{answer_GPT}')
     #await callback.message.answer(f"Вот данные которые вы ввели: ФИО: {user_data["name"]}\nДата рождения: {user_data['start']}\nДата смерти: {user_data["end"]}\nЭпитафия: {user_data["epitaph"]}\nАвтор эпитафии: {user_data["author_epitaph"]}\n Хотите завершенить работу", reply_markup = chek_finish)
     await state.set_state(StepsForms.FINISH)
-    print(answer_GPT)
 
 @router_callback.callback_query(F.data == "NOT_OK_AI_IPITAPHIA")
 async def CallBackNotOkAiEpitaphia(callback: CallbackQuery, state: FSMContext):

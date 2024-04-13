@@ -9,9 +9,9 @@ from Forms.ViewForm.Keyboards.InlineKEyboards import *
 from app.Classactivity import *
 import app.TranslateFun.TranslateFun as TF
 
+
 router_form = Router()
-'''data = FSMContext.get_data()
-lang = data.get('lang',)'''
+
 class StepsForms(StatesGroup):
     '''
     Класс в котором лежат указатели состояния
@@ -33,7 +33,7 @@ user_data = {
 Дальше идут обработчики которые направляются по событиям
 '''
 @router_form.message(StepsLaunch.FORM)
-async def SetName(message: Message):
+async def SetName(message: Message, state: FSMContext):
     await message.answer(f"Оставить это ФИО:\n{message.text}", reply_markup = chek_base_inf)
 
 @router_form.message(StepsForms.GET_SHORT_INF)
