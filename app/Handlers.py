@@ -11,8 +11,11 @@ import app.TranslateFun.Languagekeyboard
 from app.Classactivity import *
 
 router = Router()
-global lang 
+global lang
+
 
 @router.message(CommandStart())
 async def cmd_start(message: Message):
-   await message.answer(f'Привет {message.from_user.first_name}.\nЯ бот по заполнению страницы памяти\nВыбери одну из функций.', reply_markup = MainMenu())
+    await message.answer(
+        f'Привет {message.from_user.first_name}.\nЯ бот по заполнению страницы памяти\nВыбери одну из функций.',
+        reply_markup=MainMenu())
