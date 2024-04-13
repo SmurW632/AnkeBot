@@ -19,19 +19,27 @@ class StepsForms(StatesGroup):
     FINISH = State()
 
 user_data = {
-    "name": "Иванов Иван Иванович",
+    "name": "",
     "start": "",
     "end": "",
-    "epitaph": "КРАТКАЯ ЭПИТАФИЯ",
-    "author_epitaph": "АВТОР ЭПИТАФИИ", 
+    "epitaph": "",
+    "author_epitaph": "", 
     "page_type_id": "1"
 }
-
 '''
 Дальше идут обработчики которые направляются по событиям
 '''
 @router_form.message(Command('form'))
 async def GetName(message: Message, bot: Bot, state: FSMContext):
+    global user_data 
+    user_data = {
+        "name": "",
+        "start": "",
+        "end": "",
+        "epitaph": "",
+        "author_epitaph": "", 
+        "page_type_id": "1"
+    }
     await bot.send_message(message.from_user.id, ("Укажите ФИО"))
     await message.delete()
     #await state.update_data(ID_user = message.from_user.id) #айдишник пока берем из тг, потом переделать и присваивать свои айдишники
@@ -39,12 +47,14 @@ async def GetName(message: Message, bot: Bot, state: FSMContext):
 
 @router_form.message(StepsForms.GET_BASE_INF)
 async def SetName(message: Message):
-    await message.answer(f"Провертье правильность заполнения данных:\n{message.text}", reply_markup = chek_base_inf)
+    await message.answer(f"Оставить это ФИО:\n{message.text}", reply_markup = chek_base_inf)
 
 @router_form.message(StepsForms.GET_SHORT_INF)
 async def SetDate(message: Message):
-    await message.answer(f"Провертье правильность заполнения данных:\n {message.text}", reply_markup = chek_short_inf)
+    global answer_user_date 
+    answer_user_date = message.text.split(',')
+    await message.answer(f"Оставить эти даты:\nДата рождения - {answer_user_date[0]}\nДата смерти - {answer_user_date[1]}", reply_markup = chek_short_inf)
 
 @router_form.message(StepsForms.GET_AI_EPITAPHIA)
-async def SetPhoto(message: Message):
+async def SetAiEpithap(message: Message):
     await message.answer(f"Оставить эту эпитафию:\n{message.text}", reply_markup = chek_ai_ipitaphia)

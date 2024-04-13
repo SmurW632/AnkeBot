@@ -29,4 +29,4 @@ async def prompt(promt):
     
     jsoned = json.loads(response.text)
     
-    return str(jsoned["result"]['alternatives'][0]["message"]["text"]).replace(".","\.").replace("-","\-")
+    return str(jsoned["result"]['alternatives'][0]["message"]["text"])#.replace(".","\.").replace("-","\-")
