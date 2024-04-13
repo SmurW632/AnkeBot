@@ -11,9 +11,9 @@ from app.Classactivity import *
 router_form = Router()
 
 class StepsForms(StatesGroup):
-    '''
-    Класс в котором лежат указатели состояния
-    '''
+    
+    # Класс в котором лежат указатели состояния
+    
     GET_BASE_INF = State()
     GET_AI_EPITAPHIA = State()
     GET_SHORT_INF = State()
@@ -27,17 +27,20 @@ user_data = {
     "author_epitaph": "", 
     "page_type_id": "1"
 }
-'''
-Дальше идут обработчики которые направляются по событиям
-'''
+
+    # Дальше идут обработчики которые направляются по событиям
+
 @router_form.message(StepsLaunch.FORM)
-async def SetName(message: Message):
-    await message.answer(f"Оставить это ФИО:\n{message.text}", reply_markup = chek_base_inf)
+async def set_name(message: Message):
+    user_data["name"] = message.text
+    await message.answer(f"Оставьте это ФИО:\n{message.text}", reply_markup=chek_base_inf)
 
 @router_form.message(StepsForms.GET_SHORT_INF)
-async def SetDate(message: Message):
-    await message.answer(f"Оставить эти даты:\nДата рождения - {message.text.split(",")[0]}\nДата смерти - {message.text.split(",")[1]}", reply_markup = chek_short_inf)
+async def set_date(message: Message):
+    user_data["start"], user_data["end"] = message.text.split(",")
+    await message.answer(f"Оставьте эти даты:\nДата рождения - {user_data['start']}\nДата смерти - {user_data['end']}", reply_markup=chek_short_inf)
 
 @router_form.message(StepsForms.GET_AI_EPITAPHIA)
-async def SetAiEpithap(message: Message):
-    await message.answer(f"Оставить эту эпитафию:\n{message.text}", reply_markup = chek_ai_ipitaphia)
+async def set_ai_epitaph(message: Message):
+    user_data["epitaph"] = message.text
+    await message.answer(f"Оставьте эту эпитафию:\n{message.text}", reply_markup=chek_ai_ipitaphia)
