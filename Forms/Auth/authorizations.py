@@ -22,3 +22,25 @@ async def update_memory_page(message: Message):
                 await message.answer("Страница памяти успешно обновлена!")
             else:
                 await message.answer(f"Произошла ошибка при обновлении страницы памяти. Статус: {response.status}")
+<<<<<<< Updated upstream
+=======
+                
+
+async def get_access_token(email, password, device):
+    url = 'https://mc.dev.rand.agency/api/v1/get-access-token'
+    data = {
+        "email": email,
+        "password": password,
+        "device": device
+    }
+
+    async with aiohttp.ClientSession() as session:
+        async with session.post(url, json=data) as response:
+            if response.status == 200:
+                json_response = await response.json()
+                access_token = json_response.get('access_token')
+                return access_token
+            else:
+                return None
+
+>>>>>>> Stashed changes
