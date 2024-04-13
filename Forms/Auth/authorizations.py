@@ -21,7 +21,6 @@ async def update_memory_page(message: Message):
             if response.status == 200:
                 await message.answer("Страница памяти успешно обновлена!")
             else:
-                await message.answer(f"Произошла ошибка при обновлении страницы памяти. Статус: {response.status}")
                 
 
 async def get_access_token(email, password, device):
