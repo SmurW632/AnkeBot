@@ -1,18 +1,16 @@
-import os
 import aiohttp
 from aiogram.types import Message
 
 # URL для обновления страницы памяти
 UPDATE_MEMORY_PAGE_URL = "https://mc.dev.rand.agency/api/page/23647620"
 # Токен авторизации для доступа к API
-AUTH_TOKEN = ""
+AUTH_TOKEN = "190|bwn9iJVmi42enrFNmQOigWDCqWUWBgDHCXsp2QXZ"
 
     # Функция для обновления страницы памяти
 async def update_memory_page(message: Message):
     async with aiohttp.ClientSession() as session:
         # Загрузка данных запроса из файла request.json
-        file_path = os.path.join(os.path.dirname(__file__), "../doc/simple/updatePage/request.json")
-        with open(file_path, "r", encoding="utf-8") as file:
+        with open("/doc/simple/updatePage/request.json", "r") as file:
             data = file.read()
         headers = {
             "Accept": "application/json",
@@ -36,13 +34,11 @@ async def get_access_token(email, password, device):
 
     async with aiohttp.ClientSession() as session:
         async with session.post(url, json=data,) as response:
-            global AUTH_TOKEN
             if response.status == 200:
                 print(response.status)
                 print(await response.text())
                 json_response = await response.json()
                 access_token = json_response.get('access_token')
-                AUTH_TOKEN = access_token
                 return access_token
             else:
                 return None
