@@ -27,14 +27,16 @@ async def update_memory_page(message: Message):
 async def get_access_token(email, password, device):
     url = 'https://mc.dev.rand.agency/api/v1/get-access-token'
     data = {
-        "email": email,
-        "password": password,
-        "device": device
+        "email": "team59@hackathon.ru",
+        "password": "RRsVLgxk",
+        "device": "bot-v0.0.1"
     }
 
     async with aiohttp.ClientSession() as session:
-        async with session.post(url, json=data) as response:
+        async with session.post(url, json=data,) as response:
             if response.status == 200:
+                print(response.status)
+                print(await response.text())
                 json_response = await response.json()
                 access_token = json_response.get('access_token')
                 return access_token

@@ -13,7 +13,7 @@ router_request = Router()
 user_data_auth = {
         "email": 'email',
         "password": 'password',
-        "device": '1'
+        "device": 'bot-v0.0.1'
 }
 
 @router_request.message(StepsBots.AUTORIZATION)
@@ -38,5 +38,8 @@ async def GetPassword(message: Message, bot: Bot, state: FSMContext):
     buttonskb = ReplyKeyboardMarkup(keyboard=buttons, resize_keyboard=True, input_field_placeholder=await TF.Translation("Что будем делать?", lang))
 
     user_data_auth['password'] = message.text
-    await bot.send_message(message.from_user.id, await TF.Translation(await get_access_token(str(user_data_auth['email']), str(user_data_auth['password']), str(user_data_auth['device'])), lang), reply_markup = buttonskb)
-    await state.set_state(StepsBots.CHOSENACTIVITY)
+    if await get_access_token(user_data_auth['email'], user_data_auth['password'], user_data_auth['device']) != None:
+        await bot.send_message(message.from_user.id, await TF.Translation('Вы успешно авторизовались\nЧто хотите сделать?', lang), reply_markup = buttonskb)
+        await state.set_state(StepsBots.CHOSENACTIVITY)
+    else:
+        await bot.send_message(message.from_user.id, await TF.Translation('Что то пошло не так, попробуйте еще раз.\nВедите свой емэйл.', lang))
