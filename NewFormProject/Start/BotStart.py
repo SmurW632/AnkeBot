@@ -63,5 +63,5 @@ async def perhod_activity(message: Message, bot: Bot, state: FSMContext):
     elif message.text in await TF.Translation("Сканирование",lang):
         await message.delete()
         await message.answer(await TF.Translation("Пожалуйста, пришлите фото с информацией." , lang))
-        await message.answer(await TF.Translation("Постарайтесь, чтобы текст было хорошо видно.", lang))
+        await message.answer(await TF.Translation("Постарайтесь, чтобы текст было хорошо видно.", lang), reply_markup = ReplyKeyboardRemove())
         await state.set_state(StepsBots.READER_PHOTO)

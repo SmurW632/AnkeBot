@@ -34,3 +34,11 @@ edit_inf_en = InlineKeyboardMarkup(
     ]
 )
 
+photo_like = InlineKeyboardMarkup(
+    inline_keyboard=[
+        [
+            InlineKeyboardButton(text = f"👍", callback_data='OK'),
+            InlineKeyboardButton(text = f"👎", callback_data='NOT_OK'),
+        ]
+    ]
+)
