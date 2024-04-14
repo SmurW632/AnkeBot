@@ -26,7 +26,7 @@ async def choose_language(message: Message,state: FSMContext):
         await message.answer(await TF.Translation("Вы успешно установили язык!",lang),reply_markup=ReplyKeyboardRemove())
         await state.update_data(Lang = lang)
         await message.answer(await TF.Translation("А теперь необходимо авторизоваться\nВведите емэйл", lang))
-        await state.set_state(StepsBots.CHOSENACTIVITY)
+        await state.set_state(StepsBots.AUTORIZATION)
 
         # Добавляем пользователю атрибут английского языка в объект
     elif message.text in "Russian 🇷🇺":
@@ -60,6 +60,8 @@ async def perhod_activity(message: Message, bot: Bot, state: FSMContext):
         await message.delete()
         await bot.send_message(message.from_user.id, await TF.Translation("Эта функция еще в разработке.", lang))
         
-    elif message.text in await TF.Translation("Скан фото",lang):
+    elif message.text in await TF.Translation("Сканирование",lang):
         await message.delete()
-        await bot.send_message(message.from_user.id, await TF.Translation("Эта функция еще в разработке.", lang))
+        await message.answer(await TF.Translation("Пожалуйста, пришлите фото с информацией." , lang))
+        await message.answer(await TF.Translation("Постарайтесь, чтобы текст было хорошо видно.", lang))
+        await state.set_state(StepsBots.READER_PHOTO)

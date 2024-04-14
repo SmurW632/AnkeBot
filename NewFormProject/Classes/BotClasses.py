@@ -5,15 +5,16 @@ class StepsBots(StatesGroup):
     Класс в котором лежат указатели состояния
     '''
     CHOSENLANGUAGE = State()
+    READER_PHOTO = State()
     AUTORIZATION = State()
     GET_PASSWORD = State()
     CHOSENACTIVITY = State()
     FORM = State()
 
 class StepsForms(StatesGroup):
-    '''
+    """
     Класс в котором лежат указатели состояния
-    '''
+    """
     GET_BASE_INF = State()
     GET_AI_EPITAPHIA = State()
     GET_SHORT_INF = State()

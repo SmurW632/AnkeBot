@@ -8,6 +8,7 @@ from Start.BotStart import router_start
 from CallbackForm.FormCallback import router_callback
 from Form.HandlersForm import router_form
 from ClientRequests.HandlerReauest import router_request
+from PhotoReader.reader_photo import router_reader_photo
 
 bot = Bot(token=TOKEN)
 dp = Dispatcher()
@@ -17,12 +18,13 @@ async def main():
     #dp.include_router(router_callback)
     dp.include_router(router_form)
     dp.include_router(router_request)
+    dp.include_router(router_reader_photo)
     await dp.start_polling(bot)
 
 
 if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO)
     try:
-        asyncio.run(main()) 
+        asyncio.run(main())
     except KeyboardInterrupt:
         print('Exit')
