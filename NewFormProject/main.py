@@ -9,16 +9,18 @@ from CallbackForm.FormCallback import router_callback
 from Form.HandlersForm import router_form
 from ClientRequests.HandlerReauest import router_request
 from PhotoReader.reader_photo import router_reader_photo
+from VoiceReader.SpeechRecognitionFun.SpeechRecognition import router_voic_reader
 
 bot = Bot(token=TOKEN)
 dp = Dispatcher()
 
 async def main():
     dp.include_router(router_start)
-    #dp.include_router(router_callback)
+    dp.include_router(router_callback)
     dp.include_router(router_form)
     dp.include_router(router_request)
     dp.include_router(router_reader_photo)
+    #dp.include_router(router_voic_reader)
     await dp.start_polling(bot)
 
 

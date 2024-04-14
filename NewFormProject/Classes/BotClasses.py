@@ -6,6 +6,7 @@ class StepsBots(StatesGroup):
     '''
     CHOSENLANGUAGE = State()
     READER_PHOTO = State()
+    READER_VOICE = State()
     AUTORIZATION = State()
     GET_PASSWORD = State()
     CHOSENACTIVITY = State()
@@ -29,3 +30,10 @@ class StepsFormsTest(StatesGroup):
     GET_AI_EPITAPHIA = State()
     GET_SHORT_INF = State()
     FINISH = State()
+
+class StepsEdit(StatesGroup):
+    EDIT_FIO = State()
+    EDIT_DATE_B = State()
+    EDIT_DATE_D = State()
+    EPITAPH = State()
+    BIOGRAPH = State()

@@ -67,3 +67,95 @@ async def SetName(message: Message, bot: Bot, state: FSMContext):
 {await TF.Translation("Эпитафия ", lang)} - {user_data["epitaph"]}
 Хотите отредактировать данные или хотите закончить заполнение страницы нажните на одну из кнопок.
 """, reply_markup = edit_inf_en)
+        
+
+'''
+Редактирование полей
+'''
+@router_form.message(StepsEdit.EDIT_FIO)
+async def EditName(message: Message, bot: Bot, state: FSMContext):
+    data = await state.get_data()
+    lang = data.get('Lang')
+    user_data["name"] = message.text
+    if lang == 'ru':
+        await bot.send_message(message.from_user.id, f"""
+{await TF.Translation("ФИО", lang)} - {user_data["name"]}
+{await TF.Translation("Дата рождения", lang)} - {user_data["start"]}
+{await TF.Translation("Дата смерти", lang)} - {user_data["end"]}
+{await TF.Translation("Эпитафия ", lang)} - {user_data["epitaph"]}
+Хотите отредактировать данные или хотите закончить заполнение страницы нажните на одну из кнопок.
+""", reply_markup = edit_inf_ru)
+    else:
+        await bot.send_message(message.from_user.id, f"""
+{await TF.Translation("ФИО", lang)} - {user_data["name"]}
+{await TF.Translation("Дата рождения", lang)} - {user_data["start"]}
+{await TF.Translation("Дата смерти", lang)} - {user_data["end"]}
+{await TF.Translation("Эпитафия ", lang)} - {user_data["epitaph"]}
+Хотите отредактировать данные или хотите закончить заполнение страницы нажните на одну из кнопок.
+""", reply_markup = edit_inf_en)
+        
+@router_form.message(StepsEdit.EDIT_DATE_B)
+async def EditName(message: Message, bot: Bot, state: FSMContext):
+    data = await state.get_data()
+    lang = data.get('Lang')
+    user_data["start"] = message.text
+    if lang == 'ru':
+        await bot.send_message(message.from_user.id, f"""
+{await TF.Translation("ФИО", lang)} - {user_data["name"]}
+{await TF.Translation("Дата рождения", lang)} - {user_data["start"]}
+{await TF.Translation("Дата смерти", lang)} - {user_data["end"]}
+{await TF.Translation("Эпитафия ", lang)} - {user_data["epitaph"]}
+Хотите отредактировать данные или хотите закончить заполнение страницы нажните на одну из кнопок.
+""", reply_markup = edit_inf_ru)
+    else:
+        await bot.send_message(message.from_user.id, f"""
+{await TF.Translation("ФИО", lang)} - {user_data["name"]}
+{await TF.Translation("Дата рождения", lang)} - {user_data["start"]}
+{await TF.Translation("Дата смерти", lang)} - {user_data["end"]}
+{await TF.Translation("Эпитафия ", lang)} - {user_data["epitaph"]}
+Хотите отредактировать данные или хотите закончить заполнение страницы нажните на одну из кнопок.
+""", reply_markup = edit_inf_en)
+        
+@router_form.message(StepsEdit.EPITAPH)
+async def EditName(message: Message, bot: Bot, state: FSMContext):
+    data = await state.get_data()
+    lang = data.get('Lang')
+    user_data["end"] = message.text
+    if lang == 'ru':
+        await bot.send_message(message.from_user.id, f"""
+{await TF.Translation("ФИО", lang)} - {user_data["name"]}
+{await TF.Translation("Дата рождения", lang)} - {user_data["start"]}
+{await TF.Translation("Дата смерти", lang)} - {user_data["end"]}
+{await TF.Translation("Эпитафия ", lang)} - {user_data["epitaph"]}
+Хотите отредактировать данные или хотите закончить заполнение страницы нажните на одну из кнопок.
+""", reply_markup = edit_inf_ru)
+    else:
+        await bot.send_message(message.from_user.id, f"""
+{await TF.Translation("ФИО", lang)} - {user_data["name"]}
+{await TF.Translation("Дата рождения", lang)} - {user_data["start"]}
+{await TF.Translation("Дата смерти", lang)} - {user_data["end"]}
+{await TF.Translation("Эпитафия ", lang)} - {user_data["epitaph"]}
+Хотите отредактировать данные или хотите закончить заполнение страницы нажните на одну из кнопок.
+""", reply_markup = edit_inf_en)
+        
+@router_form.message(StepsEdit.BIOGRAPH)
+async def EditName(message: Message, bot: Bot, state: FSMContext):
+    data = await state.get_data()
+    lang = data.get('Lang')
+    user_data["epitaph"] = await prompt(message.text, user_data["name"], user_data["start"], user_data["end"])
+    if lang == 'ru':
+        await bot.send_message(message.from_user.id, f"""
+{await TF.Translation("ФИО", lang)} - {user_data["name"]}
+{await TF.Translation("Дата рождения", lang)} - {user_data["start"]}
+{await TF.Translation("Дата смерти", lang)} - {user_data["end"]}
+{await TF.Translation("Эпитафия ", lang)} - {user_data["epitaph"]}
+Хотите отредактировать данные или хотите закончить заполнение страницы нажните на одну из кнопок.
+""", reply_markup = edit_inf_ru)
+    else:
+        await bot.send_message(message.from_user.id, f"""
+{await TF.Translation("ФИО", lang)} - {user_data["name"]}
+{await TF.Translation("Дата рождения", lang)} - {user_data["start"]}
+{await TF.Translation("Дата смерти", lang)} - {user_data["end"]}
+{await TF.Translation("Эпитафия ", lang)} - {user_data["epitaph"]}
+Хотите отредактировать данные или хотите закончить заполнение страницы нажните на одну из кнопок.
+""", reply_markup = edit_inf_en)

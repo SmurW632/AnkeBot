@@ -58,7 +58,8 @@ async def perhod_activity(message: Message, bot: Bot, state: FSMContext):
     
     elif message.text in await TF.Translation("Заполнить голосом",lang):
         await message.delete()
-        await bot.send_message(message.from_user.id, await TF.Translation("Эта функция еще в разработке.", lang))
+        await bot.send_message(message.from_user.id, await TF.Translation("Пришли гололсовое сообщения для его распознования.", lang))
+        await state.set_state(StepsBots.READER_VOICE)
         
     elif message.text in await TF.Translation("Сканирование",lang):
         await message.delete()

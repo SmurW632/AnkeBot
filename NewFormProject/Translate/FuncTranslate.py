@@ -8,6 +8,5 @@ async def Translation(text, language):
       'translate.google.co.kr',
     ])
     
-    translated = await asyncio.get_event_loop().run_in_executor(None, lambda: translator.translate(text, dest=language))
-
+    translated = await asyncio.get_event_loop().run_in_executor(None, lambda: translator.translate(text, dest = language))
     return translated.text
