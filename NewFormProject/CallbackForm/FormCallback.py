@@ -9,6 +9,7 @@ from Form.HandlersForm import user_data
 from Keyboards.InlineKeyboard import *
 from GPTReauests.RequestsGPT import prompt
 from Data.SaveJsonUserData import save_user_data
+from ClientRequests.api_requests import *
 
 router_callback = Router()
 
@@ -46,9 +47,5 @@ async def EditEpitaph(callback: CallbackQuery, state: FSMContext):
 
 @router_callback.callback_query(F.data == 'END')
 async def END(callback: CallbackQuery, state: FSMContext):
-    await callback.message.answer("вот в этой функции должно быть обновление страницы памяти и отправка ссылки на нее.")
-    '''
-    USer нажимает кнопку закончить 
-    после чего бот отправляет все изменения из user_data файла HandlersForm.py
-    и после обновления СП отправляет пользователю ссылку на обновленную СП
-    '''
+    await update_memory_page(callback.message)
+

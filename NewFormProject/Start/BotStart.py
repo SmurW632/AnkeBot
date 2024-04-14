@@ -53,13 +53,12 @@ async def perhod_activity(message: Message, bot: Bot, state: FSMContext):
 {await TF.Translation("Я бот по заполнению страницы памяти.", lang)}
 {await TF.Translation("Что я могу:", lang)}
 {await TF.Translation("Я могу заполнить форму используя Yandex GPT для полей эпитафия и биография;", lang)}
-{await TF.Translation("Так же могу сканировать твое изображение и заполнить некоторые поля автоматически (в разработке);", lang)}
+{await TF.Translation("Так же могу сканировать твое изображение и заполнить некоторые поля автоматически;", lang)}
 {await TF.Translation("Еще могу заполнять поля по вашим голосовым сообщениям (в разработке). ", lang)}''')
     
     elif message.text in await TF.Translation("Заполнить голосом",lang):
         await message.delete()
-        await bot.send_message(message.from_user.id, await TF.Translation("Пришли гололсовое сообщения для его распознования.", lang))
-        await state.set_state(StepsBots.READER_VOICE)
+        await bot.send_message(message.from_user.id, await TF.Translation("В разработке", lang))
         
     elif message.text in await TF.Translation("Сканирование",lang):
         await message.delete()
