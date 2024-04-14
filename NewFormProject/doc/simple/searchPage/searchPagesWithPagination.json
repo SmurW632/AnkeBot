@@ -1,0 +1,156 @@
+{
+    "current_page": 1,
+    "data": [
+        {
+            "id": 170,
+            "name": "Hahd hahdd 1223",
+            "surname": null,
+            "patronym": null,
+            "birthday_at": "2024-02-01 00:00:00",
+            "died_at": "2024-03-24 00:00:00",
+            "epitaph": null,
+            "author_epitaph": null,
+            "video_links": null,
+            "external_links": null,
+            "published_page": true,
+            "accessible_by_password": false,
+            "access_password": null,
+            "user_id": 6,
+            "master_id": null,
+            "page_type_id": 2,
+            "created_at": "2024-04-03T02:57:18.000000Z",
+            "updated_at": "2024-04-03T03:13:28.000000Z",
+            "deleted_at": null,
+            "slug": 83050987,
+            "burial_id": null,
+            "price": null,
+            "commission": null,
+            "video_images": null,
+            "payment_id": null,
+            "blank_id": null,
+            "is_blank": false,
+            "is_vip": false,
+            "views": 1,
+            "visitors": 1,
+            "lead_id": null,
+            "index_page": false,
+            "filled_fields": [],
+            "position": null,
+            "is_referral": false,
+            "banner_enabled": true,
+            "locale": "ru",
+            "was_indexed": false,
+            "qr_hidden": false,
+            "historical_status_id": 1,
+            "count_filled_fields": 0,
+            "parent_tree_id": 14,
+            "custom_birthday_at": null,
+            "custom_died_at": null,
+            "services_copyright_count": 0,
+            "services_table_count": 0,
+            "services_copyright_price_count": 0,
+            "services_table_price_count": 0,
+            "main_image": null,
+            "start": {
+                "day": "01",
+                "month": "02",
+                "year": 2024
+            },
+            "end": {
+                "day": "24",
+                "month": "03",
+                "year": 2024
+            },
+            "lastName": "hahdd 1223",
+            "firstName": "Hahd",
+            "link": "http:\/\/memory.local\/page\/83050987",
+            "free_access": true,
+            "full_name": " Hahd hahdd 1223 ",
+            "burial_place": false,
+            "page_type_name": "pageType.short",
+            "count_fields": 3,
+            "master": null,
+            "user": {
+                "id": 6,
+                "name": "3243242",
+                "email": "34lksdngfdas@mail.ru",
+                "email_verified_at": null,
+                "partner_id": null,
+                "master_id": null,
+                "created_at": "2023-10-07T06:45:44.000000Z",
+                "updated_at": "2024-04-03T04:03:17.000000Z",
+                "phone": null,
+                "visited_at": "2024-04-03 00:04:21",
+                "deleted_at": null,
+                "pages_full_count": 15,
+                "pages_short_count": 137,
+                "pages_total_price": 0,
+                "masters_page_total_price": 0,
+                "burial_count": 1,
+                "masters_page_total_price_commission": "0",
+                "table_count": 0,
+                "copyright_count": 0,
+                "amocrm_id": null,
+                "referral_id": null,
+                "has_short_page_limit": false,
+                "is_external": false,
+                "verified": true,
+                "vip_table_count": 0,
+                "number_name": "6 3243242",
+                "role": {
+                    "id": 2,
+                    "title": "user",
+                    "description": "Ответственный",
+                    "created_at": "2023-09-28T14:24:33.000000Z",
+                    "updated_at": "2023-09-28T14:24:33.000000Z",
+                    "pivot": {
+                        "user_id": 6,
+                        "role_id": 2
+                    }
+                },
+                "roles": [
+                    {
+                        "id": 2,
+                        "title": "user",
+                        "description": "Ответственный",
+                        "created_at": "2023-09-28T14:24:33.000000Z",
+                        "updated_at": "2023-09-28T14:24:33.000000Z",
+                        "pivot": {
+                            "user_id": 6,
+                            "role_id": 2
+                        }
+                    }
+                ]
+            },
+            "payment": null,
+            "media": []
+        }
+    ],
+    "first_page_url": "http:\/\/memory.local\/api\/page\/search?page=1",
+    "from": 1,
+    "last_page": 1,
+    "last_page_url": "http:\/\/memory.local\/api\/page\/search?page=1",
+    "links": [
+        {
+            "url": null,
+            "label": "&laquo; Предыдущий",
+            "active": false
+        },
+        {
+            "url": "http:\/\/memory.local\/api\/page\/search?page=1",
+            "label": 1,
+            "active": true
+        },
+        {
+            "url": null,
+            "label": "pagination.next",
+            "active": false
+        }
+    ],
+    "next_page_url": null,
+    "path": "http:\/\/memory.local\/api\/page\/search",
+    "per_page": 20,
+    "prev_page_url": null,
+    "to": 1,
+    "total": 1
+}

@@ -1,0 +1,87 @@
+[
+    {
+        "title": "Опубликованные отзывы",
+        "comments": [
+            {
+                "id": 1,
+                "fio": "ИМЯ \/ ФАМИЛИЯ",
+                "text": "СЛОВА",
+                "relation_role": "КЕМ ПРИХОДИТСЯ?",
+                "page_id": 148,
+                "created_at": "2024-04-02T21:13:36.000000Z",
+                "updated_at": "2024-04-02T21:13:36.000000Z",
+                "email": null,
+                "checked": true,
+                "is_allowed": true,
+                "deleted_at": null,
+                "photo": {
+                    "id": 68,
+                    "url": "https:\/\/src.mc.dev.rand.agency\/storage\/app\/public\/68\/1712092416.jpg"
+                },
+                "media": [
+                    {
+                        "id": 68,
+                        "model_type": "App\\Models\\Comment\\Comment",
+                        "model_id": 1,
+                        "uuid": "f149f59f-53fe-4290-8ee0-15ee93dc7bea",
+                        "collection_name": "photos",
+                        "name": "media-libraryC40593",
+                        "file_name": "1712092416.jpg",
+                        "mime_type": "image\/jpeg",
+                        "disk": "public",
+                        "conversions_disk": "public",
+                        "size": 4490,
+                        "manipulations": [],
+                        "custom_properties": [],
+                        "responsive_images": [],
+                        "order_column": 64,
+                        "created_at": "2024-04-02T21:13:36.000000Z",
+                        "updated_at": "2024-04-02T21:13:36.000000Z"
+                    }
+                ]
+            },
+            {
+                "id": 2,
+                "fio": "ИМЯ \/ ФАМИЛИЯ",
+                "text": "СЛОВА",
+                "relation_role": "КЕМ ПРИХОДИТСЯ?",
+                "page_id": 148,
+                "created_at": "2024-04-02T21:16:51.000000Z",
+                "updated_at": "2024-04-02T21:16:51.000000Z",
+                "email": null,
+                "checked": true,
+                "is_allowed": true,
+                "deleted_at": null,
+                "photo": {
+                    "id": 70,
+                    "url": "https:\/\/src.mc.dev.rand.agency\/storage\/app\/public\/70\/1712092611.jpg"
+                },
+                "media": [
+                    {
+                        "id": 70,
+                        "model_type": "App\\Models\\Comment\\Comment",
+                        "model_id": 2,
+                        "uuid": "61fd9677-dfe6-486c-b0cc-d84ec5bc3a52",
+                        "collection_name": "photos",
+                        "name": "media-libraryl5mbrM",
+                        "file_name": "1712092611.jpg",
+                        "mime_type": "image\/jpeg",
+                        "disk": "public",
+                        "conversions_disk": "public",
+                        "size": 4490,
+                        "manipulations": [],
+                        "custom_properties": [],
+                        "responsive_images": [],
+                        "order_column": 66,
+                        "created_at": "2024-04-02T21:16:51.000000Z",
+                        "updated_at": "2024-04-02T21:16:51.000000Z"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "title": "Новые внешние отзывы",
+        "comments": []
+    }
+]
